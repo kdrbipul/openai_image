@@ -11,5 +11,12 @@
 }
 
 .image-generator{
-    
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url(./bg-image.jpg);
+    background-size: cover;
+    background-position: center;
+
 }
