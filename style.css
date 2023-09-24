@@ -83,5 +83,17 @@
     outline: none;
     border: none;
     background: none;
-    
+    font-size: 1rem;
+}
+
+.generate-form .generate-btn{
+    font-size: 1rem;
+    font-weight: 500;
+    outline: none;
+    border: none;
+    border-radius: 30px;
+    color: #fff;
+    background: #4949E7;
+    cursor: pointer;
+    padding: 0 20px;
 }
