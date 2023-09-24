@@ -1,7 +1,23 @@
 const generateForm = document.querySelector('.generate-form');
 const imageGallery = document.querySelector('.image-gallery');
 
-const OPENAI_API_KEY ="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"
+const OPENAI_API_KEY ="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";
+
+const updateImageCard = (imgDataArry) => {
+    imgDataArry.forEach((imgObject, index) =>{
+        const imgCard = imageGallery.querySelectorAll(".img-card")[index];
+        const imgElement = imgCard.querySelector("img");
+
+        // Set the image source to the AI-generated image data
+        const aiGeneratedImg = `data:image/jpeg;base64,${imgObject.b64_json}`
+        imgElement.src = aiGeneratedImg;
+
+        // When the image is loaded, remove the loading class
+        imgElement.onload = () => {
+            imgCard.classList.remove("loading");
+        }
+    })
+}
 
 const  generateAiImages = async (userPrompt, userImgQuantity) => {
     try {
@@ -24,7 +40,7 @@ const  generateAiImages = async (userPrompt, userImgQuantity) => {
         if(!response.ok) throw new error("Failed to generated images! Please try again.");
 
         const { data } = await response.json(); //Get data from the response
-        console.log(data);
+        updateImageCard([...data]);
     } catch (error) {
         alert(error.message);
     }
