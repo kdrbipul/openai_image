@@ -52,5 +52,17 @@
 }
 
 .image-generator .generate-form{
+    height: 56px;
+    width: 100%;
+    padding: 6px;
+    margin: 45px 0 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #fff;
+    border-radius: 30px ;
+}
+
+.generate-form .prompt-input{
     
 }
