@@ -3,10 +3,11 @@ const imageGallery = document.querySelector('.image-gallery');
 
 const OPENAI_API_KEY ="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";
 
-const updateImageCard = (imgDataArry) => {
-    imgDataArry.forEach((imgObject, index) =>{
+const updateImageCard = (imgDataArray) => {
+    imgDataArray.forEach((imgObject, index) =>{
         const imgCard = imageGallery.querySelectorAll(".img-card")[index];
         const imgElement = imgCard.querySelector("img");
+        const downloadBtn = imgCard.querySelector(".download-btn");
 
         // Set the image source to the AI-generated image data
         const aiGeneratedImg = `data:image/jpeg;base64,${imgObject.b64_json}`
@@ -15,6 +16,8 @@ const updateImageCard = (imgDataArry) => {
         // When the image is loaded, remove the loading class
         imgElement.onload = () => {
             imgCard.classList.remove("loading");
+            downloadBtn.setAttribute("href", aiGeneratedImg)
+            downloadBtn.setAttribute("download", `${new Data().getTime()}.jpg`)
         }
     })
 }
@@ -25,8 +28,8 @@ const  generateAiImages = async (userPrompt, userImgQuantity) => {
         const response = await fetch ("https://api.openai.com/v1/images/generations",{
             method: "POST",
             headers:{
-                "Content-Type": "application/json",
-                "Authorization" : `Bearer ${OPENAI_API_KEY}`
+                "Content-Type" : "application/json",
+                "Authorization" : `Bearer ${OPENAI_API_KEY}`,
             },
             body: JSON.stringify({
                 prompt: userPrompt,
